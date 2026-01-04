@@ -9,7 +9,7 @@
 using namespace std;
 
 const int MAX_APPTS = 500;
-const string DATA_FILE = "appoinments.txt:;
+const string DATA_FILE = "appoinments.txt";
 
 struct Appointment {
 	int id;
