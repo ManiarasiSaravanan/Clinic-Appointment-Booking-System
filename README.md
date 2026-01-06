@@ -37,6 +37,7 @@ return s.substr(start, end - start + 1);
 }
 
 // load appointments from file (chelsea)
+
 //Load all data from files
 void loadFromFile() {
 	//load appointments
@@ -172,6 +173,7 @@ void addAppointment() {
         << newAppt.id << endl;
 }
 //find index by id (chelsea)
+
 int findAppointmentIndexByID(int id) {
     for (int i = 0; i < apptCount; i++) {
         if (appointments[i].id == id) {
@@ -316,6 +318,7 @@ void searchAppointmentByName() {
 }
 
 //edit appointment (chelsea)
+
 // Edit appointment
 void editAppointment() {
     cout << "Enter appointment ID to edit: ";
