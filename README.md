@@ -12,7 +12,7 @@ const int MAX_APPTS = 500;
 const string DATA_FILE = "appoinments.txt";
 
 struct Appointment {
-	int id ;
+	int id ;			
 	string patientName ;
 	string phone ;
 	string date ;   // YYYY-MM-DD
@@ -121,6 +121,39 @@ void loadFromFile() {
     cout << "Loaded " << apptCount << " appointments, "
         << patientCount << " patients, "
         << doctorCount << " doctors.\n";
+}
+
+
+//Ung Pun Kang
+// Save appointments to file
+void saveToFile()
+{
+    ofstream outfile("DATA_FILE");
+
+    if (!outfile)
+    {
+        cout << "Error opening file.\n";
+        return;
+    }
+
+    for (int i = 0; i < apptCount; i++)
+    {
+        outfile << appts[i].id << "|"
+            << appts[i].patientName << "|"
+            << appts[i].phone << "|"
+            << appts[i].date << "|"
+            << appts[i].time << "|"
+            << appts[i].doctor << "|"
+            << appts[i].notes << "|";
+
+        if (appts[i].active)
+            outfile << "1\n";
+        else
+            outfile << "0\n";
+    }
+
+    outfile.close();
+    return 0;
 }
 
 //Nuhaa
