@@ -12,14 +12,14 @@ const int MAX_APPTS = 500;
 const string DATA_FILE = "appoinments.txt";
 
 struct Appointment {
-	int id = 0;
-	string patientName = "";
-	string phone = "";
-	string date = "";   // YYYY-MM-DD
-	string time = "";   // HH:MM
-	string doctor = "";
-	string notes = "";
-	bool active = false;
+	int id ;
+	string patientName ;
+	string phone ;
+	string date ;   // YYYY-MM-DD
+	string time ;   // HH:MM
+	string doctor ;
+	string notes ;
+	bool active ;
 };
 
 // === Global Data ===
