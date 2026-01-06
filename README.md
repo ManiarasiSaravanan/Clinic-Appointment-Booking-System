@@ -123,16 +123,30 @@ void loadFromFile() {
         << doctorCount << " doctors.\n";
 }
 
-// ==== Display ===
+//Nuhaa
+// Display one appointment
 void displayAppointment(const Appointment& a) {
     cout << "ID: " << a.id << (a.active ? " (Active)\n" : " (Cancelled)\n");
-    cout << "Patient Name: " << a.patientName << endl;
-    cout << "Phone: " << a.phone << endl;
-    cout << "Date: " << a.date << endl;
-    cout << "Time: " << a.time << endl;
-    cout << "Doctor: " << a.doctor << endl;
-    cout << "Notes: " << a.notes << endl;
+    cout << " Patient: " << a.patientName << "\n";
+    cout << " Phone:   " << a.phone << "\n";
+    cout << " Date:    " << a.date << "\n";
+    cout << " Time:    " << a.time << "\n";
+    cout << " Doctor:  " << a.doctor << "\n";
+    cout << " Notes:   " << a.notes << "\n";
     cout << "-----------------------------\n";
+}
+
+//Nuhaa
+// List all appointments
+void listAppointments(bool showAll = true) {
+    if (apptCount == 0) {
+        cout << "No appointments.\n";
+        return;
+    }
+    for (int i = 0; i < apptCount; ++i) {
+        if (!showAll && !appts[i].active) continue;
+        displayAppointment(appts[i]);
+    }
 }
 
 // Yixin
@@ -398,4 +412,19 @@ void cancelAppointment() {
     }
 }
 
-// 
+//Nuhaa
+// Simple menu
+void showMenu() {
+    cout << "\n=== Clinic Appointment System ===\n";
+    cout << "1. Add appointment\n";
+    cout << "2. List all appointments\n";
+    cout << "3. Search by patient name\n";
+    cout << "4. Edit appointment\n";
+    cout << "5. Cancel appointment (mark inactive)\n";
+    cout << "6. Delete appointment (permanent)\n";
+    cout << "7. Save to file\n";
+    cout << "8. Load from file\n";
+    cout << "9. List only active appointments\n";
+    cout << "0. Exit\n";
+    cout << "Select option: ";
+}
