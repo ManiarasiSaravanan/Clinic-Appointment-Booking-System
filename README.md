@@ -45,25 +45,25 @@ cout << "Starting...\n";
 return;
 }
 
-appointmentCount = 0;
+apptCount = 0;
 
-while (file >> appointments[appointmentCount].id){
+while (file >> appointments[apptCount].id){
 file.ignore();
-getline(file, appointments[appointmentCount].patientName);
-        getline(file, appointments[appointmentCount].phone);
-        getline(file, appointments[appointmentCount].date);
-        getline(file, appointments[appointmentCount].time);
-        getline(file, appointments[appointmentCount].doctor);
-        getline(file, appointments[appointmentCount].status);
-        getline(file, appointments[appointmentCount].notes);
+getline(file, appointments[apptCount].patientName);
+        getline(file, appointments[apptCount].phone);
+        getline(file, appointments[apptCount].date);
+        getline(file, appointments[appotCount].time);
+        getline(file, appointments[apptCount].doctor);
+        getline(file, appointments[apptCount].status);
+        getline(file, appointments[apptCount].notes);
         
-        appointmentCount++;
+        apptCount++;
         
-        if (appointmentCount >= MAX_APPOINTMENTS) break;
+        if (appotCount >= MAX_APPTS) break;
     }
     
     file.close();
-    cout << "Loaded " << appointmentCount << " appointments.\n";
+    cout << "Loaded " << apptCount << " appointments.\n";
 }
 
 //Ung Pun Kang
@@ -164,8 +164,8 @@ void addAppointment() {
 //find index by id (chelsea)
 int findAppointmentById(int id) {
     // Loop through all appointments
-    for (int i = 0; i < appointmentCount; i++) {
-        if (appointments[i].id == id) {
+    for (int i = 0; i < apptCount; i++) {
+        if (appts[i].id == id) {
             return i;  // Found it!
         }
     }
@@ -213,35 +213,35 @@ void editAppointment() {
     clearInput();
     cout << "\n=== EDIT APPOINTMENT ===\n";
     
-    cout << "New patient name (current: " << appointments[index].patientName << "): ";
+    cout << "New patient name (current: " << appts[index].patientName << "): ";
     string input;
     getline(cin, input);
     if (!input.empty()) {
-        appointments[index].patientName = input;
+        appts[index].patientName = input;
     }
     
-    cout << "New phone (current: " << appointments[index].phone << "): ";
+    cout << "New phone (current: " << appts[index].phone << "): ";
     getline(cin, input);
     if (!input.empty()) {
-        appointments[index].phone = input;
+        appts[index].phone = input;
     }
     
-    cout << "New date (current: " << appointments[index].date << "): ";
+    cout << "New date (current: " << appts[index].date << "): ";
     getline(cin, input);
     if (!input.empty()) {
-        appointments[index].date = input;
+        appts[index].date = input;
     }
     
-    cout << "New time (current: " << appointments[index].time << "): ";
+    cout << "New time (current: " << appts[index].time << "): ";
     getline(cin, input);
     if (!input.empty()) {
-        appointments[index].time = input;
+        appts[index].time = input;
     }
     
-    cout << "New doctor (current: " << appointments[index].doctor << "): ";
+    cout << "New doctor (current: " << appts[index].doctor << "): ";
     getline(cin, input);
     if (!input.empty()) {
-        appointments[index].doctor = input;
+        appts[index].doctor = input;
     }
     
     cout << "Appointment updated!\n";
