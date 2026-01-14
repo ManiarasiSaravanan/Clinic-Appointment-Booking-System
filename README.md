@@ -1,6 +1,31 @@
 // Clinic Appointment Booking System 
 
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <iomanip> //  use setw () for table format 
+
+using namespace std;
+
+// ===== Constant =====
+const int MAX = 100;
+const string FILE_NAME = "appointments.txt";
+
+// ===== Structure =====
+struct Appointment {
+    int id;
+    string name;
+    string phone;
+    string date;
+    string time;
+    int status; // 1 = Active, 0 = Cancelled
+};
+
+// ===== Global Variables =====
+Appointment appts[MAX];
+int countAppt = 0;
+int nextID = 1;
+
 
 int main() {
 
