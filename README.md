@@ -80,3 +80,33 @@ void saveToFile() {
     file.close();
     cout << "Data saved successfully.\n";
 }
+// ===== Load from File =====
+void loadFromFile() {
+    ifstream file(FILE_NAME.c_str());
+    countAppt = 0;
+
+    if (!file) {
+        
+        return;
+    }
+
+    // === Check countAppt < MAX to prevent crash ===
+    while (countAppt < MAX && file >> appts[countAppt].id) {
+        file.ignore(); // skip |
+        getline(file, appts[countAppt].name, '|');
+        getline(file, appts[countAppt].phone, '|');
+        getline(file, appts[countAppt].date, '|');
+        getline(file, appts[countAppt].time, '|');
+        file >> appts[countAppt].status;
+        file.ignore(); // skip newline
+
+        // Sync nextID so it doesn't duplicate IDs after loading
+        if (appts[countAppt].id >= nextID)
+            nextID = appts[countAppt].id + 1;
+
+        countAppt++;
+    }
+
+    file.close();
+    cout << "Loaded " << countAppt << " appointments.\n";
+}
