@@ -179,6 +179,69 @@ void searchAppointment() {
     }
 }
 
+// ===== Edit Appointment  =====
+void editAppointment() {
+    int id;
+    cout << "Enter ID to edit: ";
+    if (!(cin >> id)) { // Validation
+        cin.clear(); cin.ignore(10000, '\n');
+        cout << "Invalid ID.\n";
+        return;
+    }
+
+    int idx = findIndexById(id);
+
+    if (idx == -1) {
+        cout << "ID not found.\n";
+        return;
+    }
+
+    // Logic: Only update if user types something
+    cin.ignore();
+    string input;
+
+    cout << "Editing ID " << id << ". Press Enter to keep current value.\n";
+
+    cout << "Current Name (" << appts[idx].name << "): ";
+    getline(cin, input);
+    if (!input.empty()) appts[idx].name = input;
+
+    cout << "Current Phone (" << appts[idx].phone << "): ";
+    getline(cin, input);
+    if (!input.empty()) appts[idx].phone = input;
+
+    cout << "Current Date (" << appts[idx].date << "): ";
+    getline(cin, input);
+    if (!input.empty()) appts[idx].date = input;
+
+    cout << "Current Time (" << appts[idx].time << "): ";
+    getline(cin, input);
+    if (!input.empty()) appts[idx].time = input;
+
+    cout << "Update successful!\n";
+}
+
+// ===== Cancel Appointment =====
+void cancelAppointment() {
+    int id;
+    cout << "Enter appointment ID to cancel: ";
+    if (!(cin >> id)) {
+        cin.clear(); cin.ignore(10000, '\n');
+        cout << "Invalid input.\n"; return;
+    }
+
+    int idx = findIndexById(id);
+
+    if (idx != -1) {
+        appts[idx].status = 0; // Set to cancelled
+        cout << "Appointment " << id << " has been cancelled.\n";
+    }
+    else {
+        cout << "Appointment ID not found.\n";
+    }
+}
+
+
 // ===== Save to File =====
 void saveToFile() {
     ofstream file(FILE_NAME.c_str());
