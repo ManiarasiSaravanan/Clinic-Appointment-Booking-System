@@ -35,7 +35,9 @@ void editAppointment();
 void cancelAppointment();
 void saveToFile();
 void loadFromFile();
-int findIndexB
+int findIndexById(int id);
+
+
 
 // ===== Menu =====
 void showMenu() {
@@ -51,13 +53,58 @@ void showMenu() {
     cout << "Enter choice: ";
 }
 
+// ===== Display Appointments =====
+void displayAppointments() {
+    if (countAppt == 0) {
+        cout << "No appointments found.\n";
+        return;
+    }
 
-int main() {
+    // Creating  header 
+    cout << left << setw(5) << "ID"
+        << setw(20) << "Name"
+        << setw(15) << "Phone"
+        << setw(12) << "Date"
+        << setw(8) << "Time"
+        << "Status" << endl;
+    cout << string(70, '-') << endl;
 
-    // Auto-save on exit 
-    saveToFile();
-    return 0;
+    for (int i = 0; i < countAppt; i++) {
+        string statusStr = (appts[i].status == 1) ? "Active" : "Cancelled";
 
+        cout << left << setw(5) << appts[i].id
+            << setw(20) << appts[i].name
+            << setw(15) << appts[i].phone
+            << setw(12) << appts[i].date
+            << setw(8) << appts[i].time
+            << statusStr << endl;
+    }
+}
+
+// ===== Search Appointment =====
+void searchAppointment() {
+    string keyword;
+    bool found = false;
+
+    cin.ignore();
+    cout << "Enter patient name to search: ";
+    getline(cin, keyword);
+
+    cout << "\n--- Search Results ---\n";
+    for (int i = 0; i < countAppt; i++) {
+        // string::npos check
+        if (appts[i].name.find(keyword) != string::npos) {
+            cout << "ID: " << appts[i].id
+                << " | Name: " << appts[i].name
+                << " | Status: " << (appts[i].status == 1 ? "Active" : "Cancelled") << endl;
+            found = true;
+        }
+    }
+
+    if (!found) {
+        cout << "No matching records found.\n";
+    }
+}
 
 // ===== Save to File =====
 void saveToFile() {
