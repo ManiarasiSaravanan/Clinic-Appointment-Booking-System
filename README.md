@@ -37,7 +37,40 @@ void saveToFile();
 void loadFromFile();
 int findIndexById(int id);
 
+// ===== Main Function =====
+int main() {
+    int choice;
 
+    loadFromFile();
+
+    do {
+        showMenu();
+        // === Input Validation ===
+        if (!(cin >> choice)) {
+            cout << "Invalid input! Please enter a number.\n";
+            cin.clear();
+            cin.ignore(10000, '\n');
+            continue;
+        }
+
+        switch (choice) {
+        case 1: addAppointment(); break;
+        case 2: displayAppointments(); break;
+        case 3: searchAppointment(); break;
+        case 4: editAppointment(); break;
+        case 5: cancelAppointment(); break;
+        case 6: saveToFile(); break;
+        case 7: loadFromFile(); break;
+        case 0: cout << "Exiting program...\n"; break;
+        default: cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 0);
+
+    // Auto-save on exit 
+    saveToFile();
+    return 0;
+}
 
 // ===== Menu =====
 void showMenu() {
@@ -51,6 +84,46 @@ void showMenu() {
     cout << "7. Load from File\n";
     cout << "0. Exit\n";
     cout << "Enter choice: ";
+}
+
+// ===== Helper Function =====
+int findIndexById(int id) {
+    for (int i = 0; i < countAppt; i++) {
+        if (appts[i].id == id) {
+            return i;
+        }
+    }
+    return -1; // Not found
+}
+
+// ===== Add Appointment =====
+void addAppointment() {
+    if (countAppt >= MAX) {
+        cout << "Appointment list full!\n";
+        return;
+    }
+
+    Appointment a;
+    a.id = nextID++;
+    a.status = 1;
+
+    cin.ignore();
+    cout << "Enter patient name: ";
+    getline(cin, a.name);
+
+    cout << "Enter phone number: ";
+    getline(cin, a.phone);
+
+    cout << "Enter date (YYYY-MM-DD): ";
+    getline(cin, a.date);
+
+    cout << "Enter time (HH:MM): ";
+    getline(cin, a.time);
+
+    appts[countAppt] = a;
+    countAppt++;
+
+    cout << "Appointment added successfully. ID is: " << a.id << "\n";
 }
 
 // ===== Display Appointments =====
