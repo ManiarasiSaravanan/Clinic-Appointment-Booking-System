@@ -26,6 +26,18 @@ Appointment appts[MAX];
 int countAppt = 0;
 int nextID = 1;
 
+// ===== Function Prototypes =====
+void showMenu();
+void addAppointment();
+void displayAppointments();
+void searchAppointment();
+void editAppointment(); 
+void cancelAppointment();
+void saveToFile();
+void loadFromFile();
+int findIndexB
+
+
 
 int main() {
 
