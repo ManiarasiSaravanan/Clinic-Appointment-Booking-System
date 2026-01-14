@@ -37,6 +37,19 @@ void saveToFile();
 void loadFromFile();
 int findIndexB
 
+// ===== Menu =====
+void showMenu() {
+    cout << "\n=== Clinic Appointment System ===\n";
+    cout << "1. Add Appointment\n";
+    cout << "2. Display Appointments\n";
+    cout << "3. Search Appointment\n";
+    cout << "4. Edit Appointment\n"; 
+    cout << "5. Cancel Appointment\n";
+    cout << "6. Save to File\n";
+    cout << "7. Load from File\n";
+    cout << "0. Exit\n";
+    cout << "Enter choice: ";
+}
 
 
 int main() {
